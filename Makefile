@@ -20,7 +20,7 @@ Update_Gogs_Res= $(CP) $(gogs_res_from) .
 Rollback_Gogs= $(CP) $(backup_path)/{$(gogs_assets)} .
 Backup_Gogs= $(CP) ./{$(gogs_assets)} $(backup_path)
 
-upgrade: backup clean
+upgrade: backup clean checkout
 	$(Build_Gogs)
 	$(Update_Gogs_Res)
 	
