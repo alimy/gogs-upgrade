@@ -20,10 +20,9 @@ Update_Gogs_Res= $(CP) $(gogs_res_from) .
 Rollback_Gogs= $(CP) $(backup_path)/{$(gogs_assets)} .
 Backup_Gogs= $(CP) ./{$(gogs_assets)} $(backup_path)
 
-upgrade: backup clean
+upgrade: backup clean dependent
 	$(Checkout_Dev_Gogs)
 	$(Pull_Dev_Gogs)
-	$(Update_Gogs_Deps)
 	$(Build_Gogs)
 	$(Update_Gogs_Res)
 	
@@ -35,6 +34,9 @@ backup:
 rollback:
 	[ -d $(backup_path) ] && $(Clean_Gogs_Assets) && $(Rollback_Gogs)
 
+dependent:
+	$(Update_Gogs_Deps)
+
 clean:	
 	$(Clean_Gogs_Assets) || true
 
@@ -44,5 +46,5 @@ distclean: clean
 test:
 	./gogs web || true
 
-.PHONY: upgrade backup rollback clean distclean test
+.PHONY: upgrade backup rollback clean dependent distclean test
 
