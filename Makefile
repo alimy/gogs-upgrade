@@ -14,7 +14,8 @@ Clean_Gogs_Assets= $(RM) ./{$(gogs_assets)}
 Remove_Backup_Gogs= $(RM) $(backup_path)
 Checkout_Dev_Gogs= git $(gogs_git_flag) checkout -f develop
 Pull_Dev_Gogs= git $(gogs_git_flag) pull
-Build_Gogs= go build -tags "sqlite pam cert" -i github.com/gogits/gogs
+Update_Gogs_Deps= go get -u -d -tags "sqlite pam cert" github.com/gogits/gogs
+Build_Gogs= go build -tags "sqlite pam cert" github.com/gogits/gogs
 Update_Gogs_Res= $(CP) $(gogs_res_from) .
 Rollback_Gogs= $(CP) $(backup_path)/{$(gogs_assets)} .
 Backup_Gogs= $(CP) ./{$(gogs_assets)} $(backup_path)
@@ -22,6 +23,7 @@ Backup_Gogs= $(CP) ./{$(gogs_assets)} $(backup_path)
 upgrade: backup clean
 	$(Checkout_Dev_Gogs)
 	$(Pull_Dev_Gogs)
+	$(Update_Gogs_Deps)
 	$(Build_Gogs)
 	$(Update_Gogs_Res)
 	
