@@ -57,7 +57,7 @@ Gogs version 0.8.19.0111
     update		- Update gogs to new version but not dependents
     upgrade		- Upgrade gogs to new version include update dependents
     serve		- Serve gogs to test
-    backup		- Just backup gogs''s assets to .backup directory
+    backup		- Just backup gogs's assets to .backup directory
     rollback	- Rollback gogs to previous build version
     clean		- Clean gogs assets but not configure files
     distclean	- Distclean gogs assets and backup
