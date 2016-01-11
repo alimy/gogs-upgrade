@@ -13,10 +13,10 @@ Gogs upgrade from source build
 
 ### >go enviroment
 ```
-[git@go gogs]$ go version
+[git@linux gogs]$ go version
 go version go1.6beta1 linux/amd64
 
-[git@go gogs]$ go env
+[git@linux gogs]$ go env
 GOARCH="amd64"
 GOBIN=""
 GOEXE=""
@@ -36,7 +36,7 @@ CGO_ENABLED="1"
 
 ### >gogs snopshot
 ```
-[git@go gogs]$ ./gogs --version
+[git@linux gogs]$ ./gogs --version
 Gogs version 0.8.19.0111
 
 [git@linux gogs]$ ls -l
