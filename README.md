@@ -36,9 +36,6 @@ CGO_ENABLED="1"
 
 ### >gogs snopshot
 ```
-[git@linux gogs]$ ./gogs --version
-Gogs version 0.8.19.0111
-
 [git@linux gogs]$ ls -l
 drwxrwxr-x  3 git git     4096 Dec 22 02:36 custom
 drwxrwxr-x  5 git git     4096 Dec 22 02:37 data
@@ -51,6 +48,9 @@ drwxrwxr-x  7 git git     4096 Jan 11 15:45 public
 -rw-r--r--  1 git git     4833 Dec 22 02:36 README_ZH.md
 drwxr-xr-x  6 git git     4096 Dec 22 02:36 scripts
 drwxrwxr-x 10 git git     4096 Jan 11 15:45 templates
+
+[git@linux gogs]$ ./gogs --version
+Gogs version 0.8.19.0111
 
 [git@linux gogs]$ make help
     help		- Print help infomation about this
