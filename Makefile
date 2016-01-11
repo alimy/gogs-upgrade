@@ -3,6 +3,7 @@ CP= cp -rf
 MKDIR= mkdir -p
 
 backup_path= .backup
+gogs_src= github.com/gogits/gogs
 gogs_path= $(GOPATH)/src/github.com/gogits/gogs
 gogs_git_dir= $(gogs_path)/.git
 gogs_git_flag= --git-dir=$(gogs_git_dir) --work-tree=$(gogs_path)
@@ -14,15 +15,27 @@ Clean_Gogs_Assets= $(RM) ./{$(gogs_assets)}
 Remove_Backup_Gogs= $(RM) $(backup_path)
 Checkout_Dev_Gogs= git $(gogs_git_flag) checkout -f develop
 Pull_Dev_Gogs= git $(gogs_git_flag) pull
-Update_Gogs_Deps= go get -u -d -tags "sqlite pam cert" github.com/gogits/gogs
-Build_Gogs= go build -tags "sqlite pam cert" github.com/gogits/gogs
+Update_Gogs_Deps= go get -u -v -d -tags "sqlite pam cert" $(gogs_src)
+Build_Gogs= go build -v -tags "sqlite pam cert" $(gogs_src)
 Update_Gogs_Res= $(CP) $(gogs_res_from) .
 Rollback_Gogs= $(CP) $(backup_path)/{$(gogs_assets)} .
 Backup_Gogs= $(CP) ./{$(gogs_assets)} $(backup_path)
 
-upgrade: backup clean checkout
+help:
+	@echo "	help		- Print help infomation about this"
+	@echo "	update		- Update gogs to new version but not dependents"
+	@echo "	upgrade		- Upgrade gogs to new version include update dependents"
+	@echo "	serve		- Serve gogs to test"
+	@echo "	backup		- Just backup gogs's assets to .backup directory"
+	@echo "	rollback	- Rollback gogs to previous build version"
+	@echo "	clean		- Clean gogs assets but not configure files"
+	@echo "	distclean	- Distclean gogs assets and backup"
+
+update: backup clean checkout
 	$(Build_Gogs)
 	$(Update_Gogs_Res)
+
+upgrade: dependent update
 	
 backup:	
 	$(Remove_Backup_Gogs) || true
@@ -45,8 +58,8 @@ clean:
 distclean: clean
 	$(Remove_Backup_Gogs) || true
 
-test:
+serve:
 	./gogs web || true
 
-.PHONY: upgrade backup rollback clean dependent distclean test
+.PHONY: help update upgrade backup rollback clean dependent distclean serve
 
