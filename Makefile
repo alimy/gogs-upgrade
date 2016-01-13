@@ -32,7 +32,7 @@ help:
 	@echo "	clean		- Clean gogs assets but not configure files"
 	@echo "	distclean	- Distclean gogs assets and backup"
 
-install: dependent
+install: dependent clean
 	$(Build_Gogs)
 	$(Update_Gogs_Res)
 
