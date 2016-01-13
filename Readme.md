@@ -3,10 +3,14 @@ Gogs upgrade from source build
 
 # Usage
 
-* copy the Makefile to gogs's deploy directory.(eg: /home/git/gogos)
+* copy the Makefile to gogs's deploy directory(eg: /home/git/gogos) or clone
+  this repository then do work ```make ...``` and the gogs will deploy in
+  work directory.
 * configure go enviroment.
 * ```make help``` or ```make``` in gogs's deploy directory see help info.
-* ```make install``` install gogs from source build(note:you are in empty directory that gogs will deployed).
+* ```make install``` install gogs from source build(note:make sure you are in
+    empty directory that gogs will deployed or just in this repository's
+    work tree).
 * ```make update``` update gogs from source build.
 * ```make upgrade``` upgrade gogs from source build.
 
