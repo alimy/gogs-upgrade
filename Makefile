@@ -7,7 +7,7 @@ gogs_src= github.com/gogits/gogs
 gogs_path= $(GOPATH)/src/github.com/gogits/gogs
 gogs_git_dir= $(gogs_path)/.git
 gogs_git_flag= --git-dir=$(gogs_git_dir) --work-tree=$(gogs_path)
-gogs_res= public,templates
+gogs_res= LICENSE,README.md,README_ZH.md,public,templates,scripts
 gogs_assets= gogs,$(gogs_res)
 gogs_res_from= $(gogs_path)/{$(gogs_res)}
 
@@ -23,6 +23,7 @@ Backup_Gogs= $(CP) ./{$(gogs_assets)} $(backup_path)
 
 help:
 	@echo "	help		- Print help infomation about this"
+	@echo "	install		- Install gogs from source build"
 	@echo "	update		- Update gogs to new version but not dependents"
 	@echo "	upgrade		- Upgrade gogs to new version include update dependents"
 	@echo "	serve		- Serve gogs to test"
@@ -30,6 +31,10 @@ help:
 	@echo "	rollback	- Rollback gogs to previous build version"
 	@echo "	clean		- Clean gogs assets but not configure files"
 	@echo "	distclean	- Distclean gogs assets and backup"
+
+install: dependent
+	$(Build_Gogs)
+	$(Update_Gogs_Res)
 
 update: backup clean checkout
 	$(Build_Gogs)
@@ -61,5 +66,7 @@ distclean: clean
 serve:
 	./gogs web || true
 
-.PHONY: help update upgrade backup rollback clean dependent distclean serve
+.PHONY: help install update upgrade serve
+.PHONY: backup rollback clean distclean
+.PHONY: dependent
 
