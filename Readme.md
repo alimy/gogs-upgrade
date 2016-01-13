@@ -6,7 +6,7 @@ Gogs upgrade from source build
 * copy the Makefile to gogs's deploy directory(eg: /home/git/gogos) or clone
   this repository then do work ```make ...``` and the gogs will deploy in
   work directory.
-* configure go enviroment.
+* download go and configure its enviroment.
 * ```make help``` or ```make``` in gogs's deploy directory see help info.
 * ```make install``` install gogs from source build(note:make sure you are in
     empty directory that gogs will deployed or just in this repository's
