@@ -4,7 +4,7 @@ MKDIR= mkdir -p
 
 backup_path= .backup
 gogs_src= github.com/gogits/gogs
-gogs_path= $(GOPATH)/src/github.com/gogits/gogs
+gogs_path= $(GOPATH)/src/$(gogs_src)
 gogs_git_dir= $(gogs_path)/.git
 gogs_git_flag= --git-dir=$(gogs_git_dir) --work-tree=$(gogs_path)
 gogs_res= LICENSE,README.md,README_ZH.md,public,templates,scripts
