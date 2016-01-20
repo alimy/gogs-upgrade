@@ -4,7 +4,7 @@ MKDIR= mkdir -p
 
 backup_path= .backup
 gogs_src= github.com/gogits/gogs
-gogs_path= $(GOPATH)/src/$(gogs_src)
+gogs_path= $(GOPATH)/src/${gogs_src}
 gogs_git_dir= $(gogs_path)/.git
 gogs_git_flag= --git-dir=$(gogs_git_dir) --work-tree=$(gogs_path)
 gogs_res= LICENSE,README.md,README_ZH.md,public,templates,scripts
@@ -24,6 +24,7 @@ Backup_Gogs= $(CP) ./{$(gogs_assets)} $(backup_path)
 help:
 	@echo "	help		- Print help infomation about this"
 	@echo "	install		- Install gogs from source build"
+	@echo "	feature		- Test a feature of gogs from source build"
 	@echo "	update		- Update gogs to new version but not dependents"
 	@echo "	upgrade		- Upgrade gogs to new version include update dependents"
 	@echo "	serve		- Serve gogs to test"
@@ -40,8 +41,12 @@ update: backup clean checkout
 	$(Build_Gogs)
 	$(Update_Gogs_Res)
 
+feature: backup clean
+	$(Build_Gogs)
+	$(Update_Gogs_Res)
+
 upgrade: dependent update
-	
+
 backup:	
 	$(Remove_Backup_Gogs) || true
 	$(MKDIR) $(backup_path)
@@ -66,7 +71,7 @@ distclean: clean
 serve:
 	./gogs web || true
 
-.PHONY: help install update upgrade serve
+.PHONY: help install update upgrade feature serve
 .PHONY: backup rollback clean distclean
 .PHONY: dependent
 

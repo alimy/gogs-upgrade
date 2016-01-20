@@ -60,6 +60,7 @@ Gogs version 0.8.19.0111
 [git@linux gogs]$ make help
     help		- Print help infomation about this
     install		- Install gogs from source build
+    feature     - Test a feature of gogs from source build
     update		- Update gogs to new version but not dependents
     upgrade		- Upgrade gogs to new version include update dependents
     serve		- Serve gogs to test
