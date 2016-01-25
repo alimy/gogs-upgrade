@@ -48,9 +48,9 @@ feature: backup clean
 upgrade: dependent update
 
 backup:	
-	$(Remove_Backup_Gogs) || true
-	$(MKDIR) $(backup_path)
-	$(Backup_Gogs) || true
+	-$(Remove_Backup_Gogs)
+	-$(MKDIR) $(backup_path)
+	-$(Backup_Gogs)
 
 rollback:
 	[ -d $(backup_path) ] && $(Clean_Gogs_Assets) && $(Rollback_Gogs)
@@ -63,13 +63,13 @@ dependent:
 	$(Update_Gogs_Deps)
 
 clean:	
-	$(Clean_Gogs_Assets) || true
+	-$(Clean_Gogs_Assets)
 
 distclean: clean
-	$(Remove_Backup_Gogs) || true
+	-$(Remove_Backup_Gogs)
 
 serve:
-	./gogs web || true
+	-./gogs web || true
 
 .PHONY: help install update upgrade feature serve
 .PHONY: backup rollback clean distclean
