@@ -69,7 +69,7 @@ distclean: clean
 	-$(Remove_Backup_Gogs)
 
 serve:
-	-./gogs web || true
+	-./gogs web
 
 .PHONY: help install update upgrade feature serve
 .PHONY: backup rollback clean distclean
